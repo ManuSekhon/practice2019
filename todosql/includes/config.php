@@ -11,13 +11,15 @@
 
     // parameters for DB connection
     $server_name = "127.0.0.1";
-    $username = "root";
-    $password = "goldtree9";
+    $username = "USERNAME";
+    $password = "PASSWORD";
     $db_name = "todo";
 
     // establish connection with db
     $db_handle = new mysqli($server_name, $username, $password, $db_name);
     if ($db_handle->connect_error)
+    {
         exit("Error: Unable to connect to DB:" . $db_handle->connect_error . "\n");
+    }
 
 ?>

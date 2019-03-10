@@ -3,9 +3,6 @@
      * Helper functions for project
      */
 
-    // Load configuration
-    require_once("config.php");
-
     // Render view. Also pass values
     function render($view, $data = [])
     {

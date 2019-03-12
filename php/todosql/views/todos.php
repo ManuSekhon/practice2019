@@ -21,8 +21,12 @@
 
         <ul class="list-group">
             <?php foreach($todos as $todo): ?>
-                <li class="list-group-item">
-                    <input type="text" class="data" value="<?= $todo['caption'] ?>">
+                <li class="list-group-item" id="<?= $todo['id'] ?>">
+                    <input type="checkbox" <?php if ($todo['is_completed']): ?> checked <?php endif ?> onclick="toggleCheck(event)">
+                    <input type="text" 
+                           class="data <?php if ($todo['is_completed']): ?> checkedItem <?php endif ?>" 
+                           value="<?= $todo['caption'] ?>"
+                    >
                     <a href="deleteToDo.php?id=<?= $todo['id'] ?>">
                         <button class="btn btn-dark">Delete</button>
                     </a>
@@ -30,6 +34,9 @@
             <?php endforeach ?>
         </ul>
     </div>
+
+    <!-- Custom scripts -->
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>

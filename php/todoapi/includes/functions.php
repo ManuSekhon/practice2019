@@ -66,13 +66,12 @@
             if (!$response)
                 exit("Error: Failed to update");
         }
-        exit;
     }
 
     // Get values from json received from client request
     function getClientData()
     {
-        // Get raw post data
+        // Get raw post json data
         $content = trim(file_get_contents("php://input"));
         // Decode raw data
         return json_decode($content, true);

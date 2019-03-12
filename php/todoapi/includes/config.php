@@ -7,8 +7,11 @@
     ini_set("display_errors", true);
     error_reporting(E_ALL);
 
-    // Send json output
+    // headers
     header("Content-Type: application/json");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: content-type");
 
     require("functions.php");
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Task 9 (Warm up)</title>
+
+  <script>
+    window.onload = () => {
+      let div = document.getElementById("text")
+      div.style.backgroundColor = "blue"
+      div.style.width = "200px"
+      div.style.height = "200px"
+
+      div.onclick = event => {
+        event.target.style.backgroundColor = "red"
+      }
+
+      document.getElementById("div-1").onclick = (event) => {
+        alert(`Clicked: ${event.target.innerHTML}`)
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="text">Hey there!. Click me</div>
+
+  <!-- Event bubbling -->
+  <div id="div-1">
+    <button>Button 1</button>
+    <button>Button 2</button>
+    <button>Button 3</button>
+  </div>
+</body>
+
+</html>

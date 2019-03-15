@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Task 8 (Fun yet?)</title>
+
+    <script>
+      window.onload = () => {
+        document.getElementById("btn").onclick = () => {
+          let name = prompt("What's your name?");
+          let div = document.getElementById("name");
+          if (!name) div.innerHTML = `Please enter your name`;
+          else div.innerHTML = `Hey ${name}, I hope you are doing great!`;
+        };
+      };
+    </script>
+  </head>
+
+  <body>
+    <button id="btn">Click me too?</button>
+    <div id="name"></div>
+  </body>
+</html>

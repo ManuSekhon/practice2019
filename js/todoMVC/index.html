@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo with MVC</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="container-fluid">
+    <header>todos</header>
+    <div class="todo-container">
+      <!-- Submit form -->
+      <form id="todo-input">
+        <input type="text" name="todo" placeholder="What needs to be done?" autofocus />
+        <input type="submit" hidden />
+      </form>
+      <!-- todo list -->
+      <ul class="list-group todo-item-group"></ul>
+    </div>
+    <div class="card-bottom">
+      <hr id="line-one" />
+      <hr id="line-two" />
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/model.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/controller.js"></script>
+  </body>
+</html>

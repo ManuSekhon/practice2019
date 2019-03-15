@@ -16,8 +16,15 @@ function addTodo(list, todo) {
   item.onclick = customizeTodo
   item.classList.add("list-group-item")
 
+  var id = generateId(16)
+  var divCheckbox = document.createElement("div")
+  divCheckbox.classList.add("round-checkbox")
   var checkbox = document.createElement("input")
   checkbox.type = "checkbox"
+  checkbox.id = id
+  var labelCheckbox = document.createElement("label")
+  labelCheckbox.setAttribute("for", id)
+  divCheckbox.append(checkbox, labelCheckbox)
 
   var span = document.createElement("span")
   span.innerHTML = todo
@@ -26,7 +33,7 @@ function addTodo(list, todo) {
   button.type = "button"
   button.innerHTML = "X"
 
-  item.append(checkbox, span, button)
+  item.append(divCheckbox, span, button)
   list.append(item)
 }
 
@@ -36,8 +43,8 @@ function customizeTodo(event) {
   var parent = element.parentNode
 
   switch (element.nodeName) {
-    case "INPUT":
-      toggleCheck(parent)
+    case "LABEL":
+      toggleCheck(parent.parentNode)
       break
 
     case "SPAN":
@@ -45,7 +52,7 @@ function customizeTodo(event) {
       break
 
     case "BUTTON":
-      parent.parentNode.removeChild(parent)
+      parent.remove()
       break
   }
 }
@@ -53,9 +60,18 @@ function customizeTodo(event) {
 // Make line-through on checkbox click
 function toggleCheck(parent) {
   var todoData = parent.querySelector("span")
-  if (parent.querySelector("input[type='checkbox']").checked) {
+  if (parent.querySelector("input[type='checkbox']").checked == false) {
     todoData.classList.add("todo-data-checked")
   } else {
     todoData.classList.remove("todo-data-checked")
   }
+}
+
+function generateId(length) {
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  var text = ""
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
+  return text
 }

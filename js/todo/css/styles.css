@@ -33,22 +33,53 @@ ul {
   font-size: 25px;
   padding-left: 0;
   border-radius: 0 !important;
-}
-
-li > input[type="checkbox"] {
-  height: 40px;
-  width: 40px;
+  position: relative;
 }
 
 li > span {
   margin-right: auto;
   color: #4d4d4d;
-  margin-left: 15px;
+  margin-left: 40px;
 }
 
 li > button {
   background: none;
   border: none;
+}
+
+.round-checkbox label {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  top: 16px;
+}
+
+.round-checkbox label::after {
+  border: 2px solid #5dc2af;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 9px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 15px;
+}
+
+.round-checkbox input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round-checkbox input[type="checkbox"]:checked + label {
+  border-color: rgb(93, 194, 175, 0.3);
+}
+
+.round-checkbox input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 
 form input[type="text"] {

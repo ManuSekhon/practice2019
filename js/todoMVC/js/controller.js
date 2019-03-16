@@ -4,8 +4,12 @@ var myApp = new TodoApp()
 // Render collection
 render()
 
+// Set to true of all tasks need to be completed at once
+var allCompleted = false
+
 // Get DOM nodes
 var form = document.getElementById("todo-input")
+var arrowBtn = document.querySelector(".todo-container i")
 
 // Form submitted
 form.onsubmit = function(event) {
@@ -22,15 +26,30 @@ function getListNode(event) {
   // get id of parent element
   var element = event.target
   // Get name of node clicked
-  switch(element.nodeName) {
+  switch (element.nodeName) {
     case "LABEL":
       myApp.toggle(element.parentNode.parentNode.id)
-      break;
+      break
     case "BUTTON":
       myApp.removeItem(element.parentNode.id)
-      break;
+      break
   }
 
+  render()
+}
+
+// Check (or uncheck) all todos on click
+arrowBtn.onclick = function() {
+  if (!allCompleted) {
+    allCompleted = true
+    arrowBtn.classList.add("all-items-checked")
+    myApp.todoCollection.map(data => data.isCompleted = true)
+  }
+  else {
+    allCompleted = false
+    arrowBtn.classList.remove("all-items-checked")
+    myApp.todoCollection.map(data => data.isCompleted = false)
+  }
   render()
 }
 

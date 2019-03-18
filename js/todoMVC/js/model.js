@@ -31,10 +31,19 @@ function TodoApp() {
     this.todoCollection.splice(index, 1)
   }
 
+  // Toggle isCompleted
   this.toggle = function(id) {
     var index = this.todoCollection.findIndex(function(todo) {
       return todo.id == id
     })
     this.todoCollection[index].toggle()
+  }
+
+  // Update todo
+  this.updateItem = function(id, newCaption) {
+    var index = this.todoCollection.findIndex(function(todo) {
+      return todo.id == id
+    })
+    this.todoCollection[index].caption = newCaption
   }
 }

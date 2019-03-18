@@ -58,9 +58,15 @@ ul {
 }
 
 li > span {
-  margin-right: auto;
   color: #4d4d4d;
   margin-left: 40px;
+  width: 100%;
+}
+
+li input[type="text"] {
+  color: #4d4d4d;
+  margin-left: 40px;
+  width: 100%;
 }
 
 li > button {

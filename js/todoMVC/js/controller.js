@@ -6,18 +6,12 @@ fetch('http://todoapi.local.geekydev.com/', {
   method: 'GET'
 })
   .then(response => response.json())
-  .then(data => {
-    data.map(todo => myApp.addItem(todo.id, todo.caption, todo.is_completed))
-    render()
-  })
+  .then(data => data.map(todo => myApp.addItem(todo.id, todo.caption, todo.is_completed)))
+  .then(render)
   .catch(err => console.log(err))
-
-// Set to true of all tasks need to be completed at once
-// var allCompleted = false
 
 // Get DOM nodes
 var form = document.getElementById('todo-input')
-// var arrowBtn = document.querySelector('.todo-container i')
 
 // Form submitted
 form.onsubmit = function(event) {
@@ -27,10 +21,8 @@ form.onsubmit = function(event) {
     body: JSON.stringify({ caption: form.todo.value })
   })
     .then(response => response.json())
-    .then(data => {
-      myApp.addItem(data.id, data.caption, data.is_completed)
-      render()
-    })
+    .then(data => myApp.addItem(data.id, data.caption, data.is_completed))
+    .then(render)
     .catch(err => console.log(err))
   form.todo.value = ''
 }
@@ -38,33 +30,22 @@ form.onsubmit = function(event) {
 // Toggle checkbox
 function toggleCheckbox(event) {
   var id = event.target.parentNode.parentNode.id
-
   fetch(`http://todoapi.local.geekydev.com/${id}`, {
     method: 'PUT',
     body: JSON.stringify({ toggleCheck: true })
   })
-    .then(response => response.json())
-    .then(response => {
-      myApp.toggle(id)
-      console.log(response)
-      render()
-    })
+    .then(response => myApp.toggle(id))
+    .then(render)
     .catch(err => console.log(err))
 }
 
 // Delete todo item from storage
 function deleteTodo(event) {
-  // myApp.removeItem(event.target.parentNode)
   fetch(`http://todoapi.local.geekydev.com/${event.target.parentNode.id}`, {
-    method: 'DELETE',
-    headers: {
-      Accept: 'application/json'
-    }
+    method: 'DELETE'
   })
-    .then(response => {
-      myApp.removeItem(event.target.parentNode.id)
-      render()
-    })
+    .then(response => myApp.removeItem(event.target.parentNode.id))
+    .then(render)
     .catch(err => console.log(err))
 }
 
@@ -84,26 +65,9 @@ function editTodo(event) {
         method: 'PUT',
         body: JSON.stringify({ caption: input.value })
       })
-        .then(response => response.json())
-        .then(res => {
-          myApp.updateItem(input.parentNode.id, input.value)
-          render()
-        })
+        .then(res => myApp.updateItem(input.parentNode.id, input.value))
+        .then(render)
         .catch(err => console.log(err))
     }
   }
 }
-
-// // Check (or uncheck) all todos on click
-// arrowBtn.onclick = function() {
-//   if (!allCompleted) {
-//     allCompleted = true
-//     arrowBtn.classList.add('all-items-checked')
-//     myApp.todoCollection.map(data => (data.isCompleted = true))
-//   } else {
-//     allCompleted = false
-//     arrowBtn.classList.remove('all-items-checked')
-//     myApp.todoCollection.map(data => (data.isCompleted = false))
-//   }
-//   render()
-// }

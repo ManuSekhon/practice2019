@@ -1,10 +1,10 @@
 /**
  * Class to store todos
  */
-function TodoItem(id, caption) {
+function TodoItem(id, caption, isCompleted) {
   this.id = id
   this.caption = caption
-  this.isCompleted = false
+  this.isCompleted = isCompleted == '1' ? true : false
 
   // Toggle isCompleted
   this.toggle = function() {
@@ -19,8 +19,8 @@ function TodoApp() {
   this.todoCollection = []
 
   // Add new item to list
-  this.addItem = function(id, caption) {
-    this.todoCollection.push(new TodoItem(id, caption))
+  this.addItem = function(id, caption, isCompleted) {
+    this.todoCollection.push(new TodoItem(id, caption, isCompleted))
   }
 
   // Remove existing item from list
